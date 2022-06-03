@@ -5,32 +5,30 @@ module NumberHumanizer::Languages
       2 => 'ألف',
       3 => 'مليون',
       4 => 'مليار',
-      5 => 'مليون',
-      6 => 'مليار',
-      7 => 'بليون',
-      8 => 'بليار',
-      9 => 'تريليون',
-      10 => 'تريليار',
-      11 => 'كريليون',
-      12 => 'كريليار',
-      13 => 'سنكليون',
-      14 => 'سنكليار',
-      15 => 'سيزيليون',
-      16 => 'سيزيليار',
-      17 => 'سيتليون',
-      18 => 'سيتليار',
-      19 => 'ويتليون',
-      20 => 'ويتليار',
-      21 => 'تيفليون',
-      22 => 'تيفليار',
-      23 => 'ديشليون',
-      24 => 'ديشلي',
+      5 => 'بليون',
+      6 => 'بليار',
+      7 => 'تريليون',
+      8 => 'تريليار',
+      9 => 'كريليون',
+      10 => 'كريليار',
+      11 => 'سنكليون',
+      12 => 'سنكليار',
+      13 => 'سيزيليون',
+      14 => 'سيزيليار',
+      15 => 'سيتليون',
+      16 => 'سيتليار',
+      17 => 'ويتليون',
+      18 => 'ويتليار',
+      19 => 'تيفليون',
+      20 => 'تيفليار',
+      21 => 'ديشليون',
+      22 => 'ديشلي',
     }.freeze
 
     NUMBERS_DICTIONARY = {
       0   => 'صفر',
       1   => 'واحد',
-      2   => 'أثنين',
+      2   => 'إثنان',
       3   => 'ثلاثة',
       4   => 'أربعة',
       5   => 'خمسة',
@@ -41,16 +39,24 @@ module NumberHumanizer::Languages
       10  => 'عشرة',
       11  => 'احد عشر',
       12  => 'اثنا عشر',
+      13  => 'ثلاثة عشر',
+      14  => 'أربعة عشر',
+      15  => 'خمسة عشر',
+      16  => 'ستة عشر',
+      17  => 'سبعة عشر',
+      18  => 'ثمانية عشر',
+      19  => 'تسعة عشر',
       20  => 'عشرون',
       30  => 'ثلاثون',
-      40  => 'اربعون',
+      40  => 'أربعون',
       50  => 'خمسون',
       60  => 'ستون',
       70  => 'سبعون',
       80  => 'ثمانون',
       90  => 'تسعون',
       100 => 'مائة',
-      200 => 'مائتين',
+      200 => 'مئتان',
+      2000 => 'ألفان'
     }.freeze
 
     private
@@ -93,7 +99,7 @@ module NumberHumanizer::Languages
     def process_number(number)
       segments = get_number_segments(number)
       segments_size = segments.size
-      "#{segments.map!.with_index { |segment, i| process_segment(segment, unit_key: segments_size - i) }.compact.join(and_connector)}"
+      "#{segments.map!.with_index { |segment, i| process_segment(segment, unit_key: segments_size - i) }.compact.reject{ |sw| sw == '' }.join(and_connector)}"
     end
 
     def get_number_segments(number)
@@ -108,7 +114,7 @@ module NumberHumanizer::Languages
 
     def process_segment(segment, unit_key:)
       word = "#{segment_to_word(segment, unit_key)}"
-      word << " #{unit(unit_key)}" unless unit_key == 1
+      word << " #{unit(unit_key)}" if unit_key != 1 && segment > 0
       word.squish!
     end
 

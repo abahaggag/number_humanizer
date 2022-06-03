@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ahmedbahaggag@gmail.com"]
 
   spec.summary       = %q{Number to word humanizer for Arabic Language}
-  spec.description   = %q{}
+  spec.description   = %q{Number to word humanizer for Arabic Language}
   spec.homepage      = "https://github.com/abahaggag/number_humanizer"
   spec.license       = "MIT"
 
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.3'
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "byebug"
 end
