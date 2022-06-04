@@ -5,8 +5,8 @@ module NumberHumanizer::Languages
     def initialize(number, **args)
       @number = number
       @real_part, @fraction_part = exctract_real_and_fraction_parts
-      @currency = args[:currency]
-      @sub_currency = args[:sub_currency]
+      @currency = args[:currency] || NumberHumanizer.currency
+      @sub_currency = args[:sub_currency] || NumberHumanizer.sub_currency
     end
 
     def call
