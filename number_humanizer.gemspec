@@ -8,14 +8,14 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ahmed Ba Haggag"]
   spec.email         = ["ahmedbahaggag@gmail.com"]
 
-  spec.summary       = %q{Number to word humanizer for Arabic Language}
-  spec.description   = %q{Number to word humanizer for Arabic Language}
+  spec.summary       = %q{Number to word humanizer for Arabic and English Language}
+  spec.description   = %q{Number to word humanizer for Arabic and English Language}
   spec.homepage      = "https://github.com/abahaggag/number_humanizer"
   spec.license       = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
-  spec.metadata["changelog_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

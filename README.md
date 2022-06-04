@@ -1,6 +1,6 @@
-# NumberHumanizer
+# Number Humanizer
 
-A ruby gem to convert numbers into Arabic words. It has been designed to support multiple languages and currently support only Arabic language.
+A ruby gem to convert numbers into words. It has been designed to support multiple languages and currently support only Arabic and English languages.
 
 ## Installation
 
@@ -52,6 +52,53 @@ NumberHumanizer::Manager.new(1500, currency: 'ريال').call.result
 ```
 
 Note that sub currency is also supported but not fully functional so if you need to use it then you can pass amount and sub amount separately to the service and you need to combine.
+
+## Configurations
+You have to way for setting configurations in number humanizer gem:
+- Set configurations globally: this will be used in all conversions. You can add the following snippet in initializers folder or any file that is loaded automatically. Note that this configuration can be changed at any time by calling this code.
+
+```ruby
+# initializers/number_humanizer.rb
+require 'number_humanizer'
+
+NumberHumanizer.setup do |config|
+  # default language is arabic
+  config.language = :arabic
+
+  # currency is not set by default and you can set from here
+  config.currency = 'ريال'
+
+  # all upcoming configs will be placed here
+end
+```
+
+- Pass configuratoins instantly whether when using service object or monkey patched methods so that global configurations will be ignored
+
+```ruby
+require 'number_humanizer'
+
+NumberHumanizer::Manager.new(1500, language: :arabic, currency: 'ريال').call.result
+#=> "ألف و خمسة مائة ريال"
+
+1500.to_word(language: :arabic, currency: 'ريال')
+#=> "ألف و خمسة مائة ريال"
+```
+
+## Supported Languages
+Initially, gem was supporting Arabic language only but now English language is supported too. Here are the details needed for each language:
+
+- **Arabic Language**
+
+  This is the default one and you don't need to specify it but if you set other language and want to have arabic word for given number then you can pass it to the service or as args in `to_word` monkey patched method as explained in configurations section.
+
+  *Note that accepted values are: `arabic` and `ar`*.
+
+- **English Language**
+
+  Like arabic language, english language can be configured globally or instantly as described in configuration section. Here you just need to set `language` config.
+
+  *Note that accepted values are: `english` and `en`*.
+
 
 ## Development
 

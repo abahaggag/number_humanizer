@@ -1,15 +1,30 @@
 require "number_humanizer/version"
 require "number_humanizer/monkey_patchers"
+require "number_humanizer/configuration"
 require "number_humanizer/languages/base"
 require "number_humanizer/languages/arabic"
+require "number_humanizer/languages/english"
 
 module NumberHumanizer
+  extend NumberHumanizer::Configuration.new(
+    language: :arabic,
+    currency: nil,
+    sub_currency: nil
+  )
+
+  def self.setup
+    yield self
+  end
+
+  class LanguageNotSupportedError < StandardError
+  end
+
   class Manager
     attr_reader :result, :number, :language, :args
 
-    def initialize(number, language: :arabic, **args)
+    def initialize(number, **args)
       @number = number
-      @language = language
+      @language = args[:language] || NumberHumanizer.language
       @args = args
     end
 
@@ -20,12 +35,12 @@ module NumberHumanizer
 
     private
 
-
     def language_service_class
       @language_service_class ||= \
-        case language
+        case language.downcase.to_sym
         when :arabic, :ar then NumberHumanizer::Languages::Arabic
-        else raise(StandardError, 'Language not supported')
+        when :english, :en then NumberHumanizer::Languages::English
+        else raise(LanguageNotSupportedError, "Language specified (#{language}) not supported")
         end
     end
   end
