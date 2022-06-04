@@ -15,6 +15,9 @@ module NumberHumanizer
     yield self
   end
 
+  class LanguageNotSupportedError < StandardError
+  end
+
   class Manager
     attr_reader :result, :number, :language, :args
 
@@ -35,7 +38,7 @@ module NumberHumanizer
       @language_service_class ||= \
         case language.downcase.to_sym
         when :arabic, :ar then NumberHumanizer::Languages::Arabic
-        else raise(StandardError, "Language specified (#{language}) not supported")
+        else raise(LanguageNotSupportedError, "Language specified (#{language}) not supported")
         end
     end
   end
