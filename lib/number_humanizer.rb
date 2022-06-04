@@ -3,6 +3,7 @@ require "number_humanizer/monkey_patchers"
 require "number_humanizer/configuration"
 require "number_humanizer/languages/base"
 require "number_humanizer/languages/arabic"
+require "number_humanizer/languages/english"
 
 module NumberHumanizer
   extend NumberHumanizer::Configuration.new(
@@ -38,6 +39,7 @@ module NumberHumanizer
       @language_service_class ||= \
         case language.downcase.to_sym
         when :arabic, :ar then NumberHumanizer::Languages::Arabic
+        when :english, :en then NumberHumanizer::Languages::English
         else raise(LanguageNotSupportedError, "Language specified (#{language}) not supported")
         end
     end

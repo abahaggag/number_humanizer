@@ -1,7 +1,9 @@
 module NumberHumanizer
   module StringExtensions
     def squish!
-      self.strip.gsub(/s+/, ' ')
+      self.strip!
+      self.gsub!(/\s+/, ' ')
+      self
     end
 
     def blank?
