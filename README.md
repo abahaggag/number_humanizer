@@ -1,6 +1,6 @@
-# NumberHumanizer
+# Number Humanizer
 
-A ruby gem to convert numbers into Arabic words. It has been designed to support multiple languages and currently support only Arabic language.
+A ruby gem to convert numbers into words. It has been designed to support multiple languages and currently support only Arabic and English languages.
 
 ## Installation
 
@@ -83,6 +83,22 @@ NumberHumanizer::Manager.new(1500, language: :arabic, currency: 'ريال').call
 1500.to_word(language: :arabic, currency: 'ريال')
 #=> "ألف و خمسة مائة ريال"
 ```
+
+## Supported Languages
+Initially, gem was supporting Arabic language only but now English language is supported too. Here are the details needed for each language:
+
+- **Arabic Language**
+
+  This is the default one and you don't need to specify it but if you set other language and want to have arabic word for given number then you can pass it to the service or as args in `to_word` monkey patched method as explained in configurations section.
+
+  *Note that accepted values are: `arabic` and `ar`*.
+
+- **English Language**
+
+  Like arabic language, english language can be configured globally or instantly as described in configuration section. Here you just need to set `language` config.
+
+  *Note that accepted values are: `english` and `en`*.
+
 
 ## Development
 

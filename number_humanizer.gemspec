@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ahmed Ba Haggag"]
   spec.email         = ["ahmedbahaggag@gmail.com"]
 
-  spec.summary       = %q{Number to word humanizer for Arabic Language}
-  spec.description   = %q{Number to word humanizer for Arabic Language}
+  spec.summary       = %q{Number to word humanizer for Arabic and English Language}
+  spec.description   = %q{Number to word humanizer for Arabic and English Language}
   spec.homepage      = "https://github.com/abahaggag/number_humanizer"
   spec.license       = "MIT"
 
